@@ -1,4 +1,4 @@
-package com.tecnm.merida.market_backend_v2.persistence.entity;
+package com.tecnm.merida.market_backend_26_3.persistence.entity;
 
 import jakarta.persistence.*;
 
