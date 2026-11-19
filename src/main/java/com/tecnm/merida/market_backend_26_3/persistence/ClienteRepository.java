@@ -1,0 +1,45 @@
+package com.tecnm.merida.market_backend_26_3.persistence;
+
+import com.tecnm.merida.market_backend_26_3.domain.Client;
+import com.tecnm.merida.market_backend_26_3.domain.repository.ClientRepository;
+import com.tecnm.merida.market_backend_26_3.persistence.crud.ClienteCrudRepository;
+import com.tecnm.merida.market_backend_26_3.persistence.entity.Cliente;
+import com.tecnm.merida.market_backend_26_3.persistence.mapper.ClientMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public class ClienteRepository implements ClientRepository {
+
+    @Autowired
+    private ClienteCrudRepository clienteCrudRepository;
+
+    @Autowired
+    private ClientMapper mapper;
+
+    @Override
+    public List<Client> getAll() {
+        List<Cliente> clientes = (List<Cliente>) clienteCrudRepository.findAll();
+        return mapper.toClients(clientes);
+    }
+
+    @Override
+    public Optional<Client> getClient(int clientId) {
+        return clienteCrudRepository.findById(clientId)
+                .map(cliente -> mapper.toClient(cliente));
+    }
+
+    @Override
+    public Client save(Client client) {
+        Cliente cliente = mapper.toCliente(client);
+        return mapper.toClient(clienteCrudRepository.save(cliente));
+    }
+
+    @Override
+    public void delete(int clientId) {
+        clienteCrudRepository.deleteById(clientId);
+    }
+}

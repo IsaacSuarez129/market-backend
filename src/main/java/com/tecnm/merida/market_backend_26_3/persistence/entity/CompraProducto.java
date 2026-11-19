@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 @Table(name = "compras_productos")
 public class CompraProducto {
 
-    //viene de otra clase
     @EmbeddedId
     private CompraProductoPK id;
 
@@ -14,11 +13,11 @@ public class CompraProducto {
     private Boolean estado;
 
     @ManyToOne
+    @MapsId("idCompra")
     @JoinColumn(name = "id_compra", insertable = false, updatable = false)
     private Compra compra;
 
     @ManyToOne
-    @MapsId("idCompra")
     @JoinColumn(name = "id_producto", insertable = false, updatable = false)
     private Producto producto;
 
