@@ -18,7 +18,7 @@ public class ClientService {
         return clientRepository.getAll();
     }
 
-    public Optional<Client> getClient(int clientId) {
+    public Optional<Client> getClient(String clientId) {
         return clientRepository.getClient(clientId);
     }
 
@@ -26,14 +26,14 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public Optional<Client> update(int clientId, Client client) {
+    public Optional<Client> update(String clientId, Client client) {
         return getClient(clientId).map(existingClient -> {
             client.setClientId(clientId);
             return clientRepository.save(client);
         });
     }
 
-    public boolean delete(int clientId) {
+    public boolean delete(String clientId) {
         if (getClient(clientId).isPresent()) {
             clientRepository.delete(clientId);
             return true;

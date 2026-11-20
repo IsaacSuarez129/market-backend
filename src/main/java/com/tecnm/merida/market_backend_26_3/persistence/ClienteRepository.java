@@ -27,7 +27,7 @@ public class ClienteRepository implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> getClient(int clientId) {
+    public Optional<Client> getClient(String clientId) {
         return clienteCrudRepository.findById(clientId)
                 .map(cliente -> mapper.toClient(cliente));
     }
@@ -39,7 +39,7 @@ public class ClienteRepository implements ClientRepository {
     }
 
     @Override
-    public void delete(int clientId) {
+    public void delete(String clientId) {
         clienteCrudRepository.deleteById(clientId);
     }
 }

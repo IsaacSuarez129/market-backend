@@ -45,9 +45,9 @@ public class ClientController {
             description = "Internal Server Error")
     public ResponseEntity<Client> getClient(
             @Parameter(description = "ID of the client to be retrieved",
-                    example = "1001",
+                    example = "2552243",
                     required = true)
-            @PathVariable("id") int clientId) {
+            @PathVariable("id") String clientId) {
         return clientService.getClient(clientId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -65,11 +65,11 @@ public class ClientController {
                                     value =
                                             """
                                             {
-                                               "clientId": 1001,
+                                               "clientId": "1001",
                                                "firstName": "Juan",
                                                "lastName": "Pérez",
-                                               "cellPhone": "9991234567",
-                                               "phone": "9997654321",
+                                               "cellPhone": 9991234567,
+                                               "address": "Calle 60 # 123",
                                                "email": "juan.perez@correo.com"
                                             }
                                             """
@@ -99,11 +99,11 @@ public class ClientController {
                                     value =
                                             """
                                             {
-                                               "firstName": "Juan Carlos",
-                                               "lastName": "Pérez López",
-                                               "cellPhone": "9991234567",
-                                               "phone": "9997654321",
-                                               "email": "juancarlos.perez@correo.com"
+                                               "firstName": "Cristiano",
+                                               "lastName": "Ronaldo dos Santos",
+                                               "cellPhone": 3462257293,
+                                               "address": "Cl 1 # 11 - 11",
+                                               "email": "cristiano@ronaldo.com"
                                             }
                                             """
                             )
@@ -115,8 +115,8 @@ public class ClientController {
     @ApiResponse(responseCode = "404", description = "Client not found")
     @ApiResponse(responseCode = "500", description = "Internal server error")
     public ResponseEntity<Client> update(
-            @Parameter(description = "ID of the client to be updated", example = "1001", required = true)
-            @PathVariable("id") int clientId,
+            @Parameter(description = "ID of the client to be updated", example = "2552243", required = true)
+            @PathVariable("id") String clientId,
             @RequestBody Client client) {
         return clientService.update(clientId, client)
                 .map(ResponseEntity::ok)
@@ -134,7 +134,7 @@ public class ClientController {
     public ResponseEntity<Client> delete(
             @Parameter(description = "ID of the client to be deleted", example = "1001",
                     required = true)
-            @PathVariable("id") int clientId) {
+            @PathVariable("id") String clientId) {
         if (clientService.delete(clientId)) {
             return ResponseEntity.ok().build();
         } else {

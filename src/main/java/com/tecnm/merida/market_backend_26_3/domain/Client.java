@@ -2,18 +2,18 @@ package com.tecnm.merida.market_backend_26_3.domain;
 
 public class Client {
 
-    private Integer clientId;
+    private String clientId;
     private String firstName;
     private String lastName;
-    private String cellPhone;
-    private String phone;
+    private Long cellPhone;
+    private String address;
     private String email;
 
-    public Integer getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
@@ -33,20 +33,20 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public String getCellPhone() {
+    public Long getCellPhone() {
         return cellPhone;
     }
 
-    public void setCellPhone(String cellPhone) {
+    public void setCellPhone(Long cellPhone) {
         this.cellPhone = cellPhone;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {
