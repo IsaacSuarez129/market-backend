@@ -1,5 +1,7 @@
 package com.tecnm.merida.market_backend_26_3.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Client {
 
     private String clientId;
@@ -8,6 +10,17 @@ public class Client {
     private Long cellPhone;
     private String address;
     private String email;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getClientId() {
         return clientId;
